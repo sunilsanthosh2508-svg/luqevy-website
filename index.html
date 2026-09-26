@@ -2,268 +2,615 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Luqevy — Building What's Next</title>
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
   <meta
     name="description"
-    content="Luqevy builds technology products for what comes next."
+    content="Luqevy — Building what's next. Technology, products and ideas designed for the future."
   >
 
+  <meta
+    name="theme-color"
+    content="#05070d"
+  >
+
+  <title>Luqevy — Building What's Next</title>
+
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <link
-    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
     rel="stylesheet"
   >
 
+  <!-- Website CSS -->
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <!-- NAVBAR -->
+  <!-- =========================================
+       NAVIGATION
+  ========================================== -->
+
   <header class="navbar">
 
-    <a href="#" class="brand">
-      <img src="logo.png" alt="Luqevy logo">
-    </a>
+    <div class="nav-container">
 
-    <nav>
-      <a href="#about">About</a>
-      <a href="#ventures">Ventures</a>
-      <a href="#vision">Vision</a>
-      <a href="#contact">Contact</a>
-    </nav>
+      <!-- Logo -->
+      <a
+        href="#top"
+        class="brand"
+        aria-label="Luqevy home"
+      >
+        <img
+          src="logo.png"
+          alt="Luqevy"
+        >
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav class="nav-links">
+
+        <a href="#about">About</a>
+
+        <a href="#ventures">Product</a>
+
+        <a href="#vision">Vision</a>
+
+        <a href="#contact">Contact</a>
+
+      </nav>
+
+      <!-- Mobile Menu Button -->
+      <button
+        class="menu-toggle"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+        type="button"
+      >
+        <span></span>
+        <span></span>
+      </button>
+
+    </div>
 
   </header>
 
 
-  <main>
+  <main id="top">
 
-    <!-- HERO -->
+
+    <!-- =========================================
+         HERO
+    ========================================== -->
+
     <section class="hero">
 
-      <div class="hero-meta">
-        <span>TECHNOLOGY COMPANY</span>
-        <span>EST. 2026</span>
-      </div>
+      <div class="hero-glow"></div>
 
-      <div class="hero-content">
+      <div class="hero-container">
 
-        <div class="hero-logo">
-          <img src="logo.png" alt="Luqevy">
+        <div class="hero-content">
+
+          <div class="eyebrow">
+            <span class="eyebrow-dot"></span>
+            INDEPENDENT TECHNOLOGY COMPANY
+          </div>
+
+          <h1>
+            Building
+            <span>what's next.</span>
+          </h1>
+
+          <p class="hero-description">
+            Luqevy is a technology company focused on turning
+            meaningful ideas into useful products for the next
+            generation.
+          </p>
+
+          <div class="hero-actions">
+
+            <a
+              href="#ventures"
+              class="primary-button"
+            >
+              <span>Explore our product</span>
+              <span aria-hidden="true">↗</span>
+            </a>
+
+            <a
+              href="#about"
+              class="secondary-button"
+            >
+              About Luqevy
+            </a>
+
+          </div>
+
         </div>
 
-        <p class="eyebrow">LUQEVY</p>
 
-        <h1>
-          Building
-          <span>what's next.</span>
-        </h1>
+        <!-- Hero Logo -->
+        <div class="hero-visual">
 
-        <p class="hero-text">
-          Luqevy creates technology products that solve real problems,
-          simplify experiences, and open new possibilities.
-        </p>
+          <div class="hero-logo">
 
-        <a href="#ventures" class="primary-button">
-          Explore our work
-          <span>↗</span>
-        </a>
+            <img
+              src="logo.png"
+              alt="Luqevy logo"
+            >
 
-      </div>
+          </div>
 
-      <div class="hero-orb orb-one"></div>
-      <div class="hero-orb orb-two"></div>
-
-    </section>
-
-
-    <!-- ABOUT -->
-    <section class="section about" id="about">
-
-      <div class="section-index">01</div>
-
-      <div class="section-content">
-
-        <p class="section-label">ABOUT LUQEVY</p>
-
-        <h2>
-          Ideas become
-          <span>technology.</span>
-        </h2>
-
-        <div class="about-copy">
-
-          <p>
-            Luqevy is a technology company focused on building
-            useful digital products for the next generation.
-          </p>
-
-          <p>
-            We start with real problems, explore new technology,
-            and turn promising ideas into products people can use.
-          </p>
+          <div class="hero-orbit orbit-one"></div>
+          <div class="hero-orbit orbit-two"></div>
 
         </div>
 
       </div>
 
+      <div class="scroll-indicator">
+
+        <span>SCROLL TO EXPLORE</span>
+
+        <span class="scroll-line"></span>
+
+      </div>
+
     </section>
 
 
-    <!-- VENTURES -->
-    <section class="section ventures" id="ventures">
 
-      <div class="section-index">02</div>
+    <!-- =========================================
+         ABOUT
+    ========================================== -->
 
-      <div class="section-content">
+    <section
+      class="section about-section"
+      id="about"
+    >
 
-        <p class="section-label">OUR VENTURES</p>
+      <div class="section-container">
 
-        <h2>
-          Products built
-          <span>with purpose.</span>
-        </h2>
+        <div class="section-label">
+          01 / ABOUT
+        </div>
 
+        <div class="about-grid">
 
-        <!-- CAMPUS PILOT -->
-        <article class="venture-card">
+          <div class="section-heading">
 
-          <div class="venture-header">
-
-            <span>01</span>
-
-            <span>
-              EDTECH / PRODUCTIVITY
-            </span>
+            <h2>
+              Ideas become
+              <span>products.</span>
+            </h2>
 
           </div>
 
 
-          <div class="venture-body">
+          <div class="about-content">
 
-            <div class="venture-info">
+            <p class="large-text">
+              Luqevy is built around a simple idea:
+              technology should solve real problems.
+            </p>
 
-              <p class="venture-kicker">
-                LUQEVY PRODUCT
-              </p>
+            <p>
+              We explore ideas, build prototypes, listen to
+              people and turn useful concepts into products
+              that can make everyday experiences better.
+            </p>
 
-              <h3>Campus Pilot</h3>
+            <p>
+              Starting small. Learning quickly.
+              Building for what's next.
+            </p>
 
-              <p>
-                Helping college students move from project ideas
-                to planning, documentation, presentations and
-                final submission.
-              </p>
+          </div>
 
-              <a
-                href="https://campus-pilot-seven.vercel.app/"
-                target="_blank"
-                class="text-button"
-              >
-                Explore Campus Pilot
-                <span>↗</span>
-              </a>
+        </div>
 
+      </div>
+
+    </section>
+
+
+
+    <!-- =========================================
+         PRODUCT / VENTURES
+    ========================================== -->
+
+    <section
+      class="section ventures-section"
+      id="ventures"
+    >
+
+      <div class="section-container">
+
+        <div class="section-label">
+          02 / PRODUCT
+        </div>
+
+
+        <div class="ventures-header">
+
+          <div>
+
+            <h2>
+              Our first
+              <span>product.</span>
+            </h2>
+
+          </div>
+
+          <p>
+            A product created to make the college
+            project journey simpler and more structured.
+          </p>
+
+        </div>
+
+
+        <!-- Campus Pilot Card -->
+
+        <div class="product-card">
+
+          <div class="product-info">
+
+            <div class="product-number">
+              01
             </div>
 
+            <div class="product-name">
+              CAMPUS PILOT
+            </div>
 
-            <div class="venture-visual">
+            <div class="product-tagline">
+              From idea to submission.
+            </div>
 
-              <div class="visual-glow"></div>
+            <p>
+              Campus Pilot is being built to help college
+              students move through their project journey —
+              from discovering ideas and planning to
+              documentation, presentations and viva preparation.
+            </p>
+
+
+            <a
+              href="https://campus-pilot-seven.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="product-button"
+            >
+              <span>Explore Campus Pilot</span>
+              <span aria-hidden="true">↗</span>
+            </a>
+
+          </div>
+
+
+          <div class="product-visual">
+
+            <div class="product-glow"></div>
+
+            <div class="product-circle">
 
               <span>CP</span>
 
             </div>
 
+            <div class="product-grid"></div>
+
           </div>
 
-        </article>
+        </div>
 
       </div>
 
     </section>
 
 
-    <!-- VISION -->
-    <section class="section vision" id="vision">
 
-      <div class="section-index">03</div>
+    <!-- =========================================
+         BUILDING
+    ========================================== -->
 
-      <div class="section-content">
+    <section class="section building-section">
 
-        <p class="section-label">VISION</p>
+      <div class="section-container">
 
-        <h2>
-          Build useful.
-          <br>
-          <span>Think long-term.</span>
-        </h2>
+        <div class="section-label">
+          03 / WHAT WE BUILD
+        </div>
 
-        <p class="vision-text">
-          We believe technology should make difficult things
-          simpler and give people better tools to move forward.
-        </p>
+
+        <div class="building-grid">
+
+          <div class="building-heading">
+
+            <h2>
+              Small beginnings.
+              <span>Big possibilities.</span>
+            </h2>
+
+          </div>
+
+
+          <div class="building-list">
+
+            <div class="building-item">
+
+              <span class="item-number">01</span>
+
+              <div>
+
+                <h3>Technology</h3>
+
+                <p>
+                  Exploring modern technologies to create
+                  useful digital experiences.
+                </p>
+
+              </div>
+
+            </div>
+
+
+            <div class="building-item">
+
+              <span class="item-number">02</span>
+
+              <div>
+
+                <h3>Products</h3>
+
+                <p>
+                  Turning real-world problems into simple,
+                  practical products.
+                </p>
+
+              </div>
+
+            </div>
+
+
+            <div class="building-item">
+
+              <span class="item-number">03</span>
+
+              <div>
+
+                <h3>Experiments</h3>
+
+                <p>
+                  Testing ideas, learning from users and
+                  continuously improving.
+                </p>
+
+              </div>
+
+            </div>
+
+
+            <div class="building-item">
+
+              <span class="item-number">04</span>
+
+              <div>
+
+                <h3>Future</h3>
+
+                <p>
+                  Building a foundation for products that
+                  can grow beyond their first version.
+                </p>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
 
       </div>
 
     </section>
 
 
-    <!-- CONTACT -->
-    <section class="contact" id="contact">
 
-      <div class="contact-content">
+    <!-- =========================================
+         VISION
+    ========================================== -->
 
-        <p class="section-label">
-          LET'S CONNECT
-        </p>
+    <section
+      class="section vision-section"
+      id="vision"
+    >
 
-        <h2>
-          Let's build
-          <span>what's next.</span>
-        </h2>
+      <div class="vision-glow"></div>
 
-        <a
-          href="https://www.instagram.com/luqevy/"
-          target="_blank"
-          class="contact-button"
-        >
-          Connect with Luqevy
-          <span>↗</span>
-        </a>
+      <div class="section-container">
+
+        <div class="section-label">
+          04 / VISION
+        </div>
+
+
+        <div class="vision-content">
+
+          <div class="vision-mark">
+            L
+          </div>
+
+          <h2>
+            Build useful.
+            <br>
+            <span>Build forward.</span>
+          </h2>
+
+          <p>
+            Luqevy aims to create technology that starts
+            with real people, solves meaningful problems
+            and grows with the people who use it.
+          </p>
+
+        </div>
 
       </div>
 
     </section>
+
+
+
+    <!-- =========================================
+         CONTACT
+    ========================================== -->
+
+    <section
+      class="section contact-section"
+      id="contact"
+    >
+
+      <div class="section-container">
+
+        <div class="section-label">
+          05 / CONNECT
+        </div>
+
+
+        <div class="contact-grid">
+
+          <div>
+
+            <h2>
+              Let's build
+              <span>what's next.</span>
+            </h2>
+
+          </div>
+
+
+          <div class="contact-content">
+
+            <p>
+              Follow Luqevy as we build, experiment
+              and launch our first products.
+            </p>
+
+
+            <a
+              href="https://www.instagram.com/luqevy.co/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="contact-button"
+            >
+
+              <span>
+                Instagram · @luqevy.co
+              </span>
+
+              <span aria-hidden="true">
+                ↗
+              </span>
+
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
 
   </main>
 
 
-  <!-- FOOTER -->
-  <footer>
 
-    <div class="footer-brand">
+  <!-- =========================================
+       FOOTER
+  ========================================== -->
 
-      <img src="logo.png" alt="Luqevy logo">
+  <footer class="footer">
+
+    <div class="footer-container">
+
+      <div class="footer-brand">
+
+        <div class="footer-logo">
+
+          <img
+            src="logo.png"
+            alt="Luqevy"
+          >
+
+        </div>
+
+        <p>
+          Building what's next.
+        </p>
+
+      </div>
+
+
+      <div class="footer-links">
+
+        <a href="#about">
+          About
+        </a>
+
+        <a href="#ventures">
+          Product
+        </a>
+
+        <a href="#vision">
+          Vision
+        </a>
+
+        <a href="#contact">
+          Contact
+        </a>
+
+        <a
+          href="https://www.instagram.com/luqevy.co/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Instagram
+        </a>
+
+      </div>
+
+
+      <div class="footer-bottom">
+
+        <span>
+          © <span id="year"></span> Luqevy
+        </span>
+
+        <span>
+          All rights reserved.
+        </span>
+
+      </div>
 
     </div>
-
-    <p>
-      Building what's next.
-    </p>
-
-    <span>
-      © <span id="year"></span> Luqevy
-    </span>
 
   </footer>
 
 
+
+  <!-- Website JavaScript -->
   <script src="script.js"></script>
 
 </body>
