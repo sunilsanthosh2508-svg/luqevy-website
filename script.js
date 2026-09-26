@@ -1,12 +1,13 @@
 /* =========================================
-   LUQEVY PREMIUM WEBSITE
+   LUQEVY
+   Premium Technology Website
 ========================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================
-       YEAR
+       CURRENT YEAR
     ====================================== */
 
     const year =
@@ -19,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================
-       HEADER SCROLL
+       HEADER
     ====================================== */
 
     const header =
@@ -27,6 +28,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     function updateHeader() {
+
+        if (!header) return;
 
         if (window.scrollY > 30) {
 
@@ -64,18 +67,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (menuToggle && mobileNav) {
 
-
         menuToggle.addEventListener(
             "click",
             () => {
 
-                const isOpen =
+                const open =
                     mobileNav.classList.contains(
                         "open"
                     );
 
 
-                if (isOpen) {
+                if (open) {
 
                     mobileNav.classList.remove(
                         "open"
@@ -111,8 +113,6 @@ document.addEventListener("DOMContentLoaded", () => {
         );
 
 
-        /* Close after clicking link */
-
         mobileNav
             .querySelectorAll("a")
             .forEach(link => {
@@ -143,7 +143,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================
-       ESCAPE CLOSE
+       ESCAPE KEY
     ====================================== */
 
     document.addEventListener(
@@ -176,7 +176,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================
-       SCROLL REVEAL
+       REVEAL ANIMATION
     ====================================== */
 
     const revealElements =
@@ -212,6 +212,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 },
                 {
                     threshold: 0.12,
+
                     rootMargin:
                         "0px 0px -50px 0px"
                 }
@@ -225,7 +226,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
             }
         );
-
 
     } else {
 
@@ -243,7 +243,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================
-       SMOOTH SCROLL
+       SMOOTH INTERNAL LINKS
     ====================================== */
 
     document
@@ -251,7 +251,6 @@ document.addEventListener("DOMContentLoaded", () => {
             'a[href^="#"]'
         )
         .forEach(anchor => {
-
 
             anchor.addEventListener(
                 "click",
@@ -291,8 +290,9 @@ document.addEventListener("DOMContentLoaded", () => {
                             : 0;
 
 
-                    const targetPosition =
-                        target.getBoundingClientRect()
+                    const position =
+                        target
+                            .getBoundingClientRect()
                             .top +
                         window.scrollY -
                         headerHeight;
@@ -300,11 +300,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     window.scrollTo({
 
-                        top:
-                            targetPosition,
+                        top: position,
 
-                        behavior:
-                            "smooth"
+                        behavior: "smooth"
 
                     });
 
@@ -315,30 +313,34 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================
-       HOVER MOVEMENT FOR VENTURE
+       CAMPUS PILOT VISUAL
     ====================================== */
 
-    const venture =
-        document.querySelector(".venture");
+    const ventureVisual =
+        document.querySelector(
+            ".venture-visual"
+        );
 
-    const ventureMark =
-        document.querySelector(".venture-mark");
+    const visualLogo =
+        document.querySelector(
+            ".visual-logo"
+        );
 
 
     if (
-        venture &&
-        ventureMark &&
+        ventureVisual &&
+        visualLogo &&
         window.matchMedia(
             "(pointer: fine)"
         ).matches
     ) {
 
-        venture.addEventListener(
+        ventureVisual.addEventListener(
             "mousemove",
             event => {
 
                 const rect =
-                    venture.getBoundingClientRect();
+                    ventureVisual.getBoundingClientRect();
 
 
                 const x =
@@ -358,25 +360,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
                 const moveX =
-                    (x - 0.5) * 8;
+                    (x - 0.5) * 12;
 
 
                 const moveY =
-                    (y - 0.5) * 8;
+                    (y - 0.5) * 12;
 
 
-                ventureMark.style.transform =
+                visualLogo.style.transform =
                     `translate(${moveX}px, ${moveY}px)`;
 
             }
         );
 
 
-        venture.addEventListener(
+        ventureVisual.addEventListener(
             "mouseleave",
             () => {
 
-                ventureMark.style.transform =
+                visualLogo.style.transform =
                     "translate(0, 0)";
 
             }
@@ -386,7 +388,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================
-       EXTERNAL LINKS
+       EXTERNAL LINK SECURITY
     ====================================== */
 
     document
