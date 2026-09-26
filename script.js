@@ -1,91 +1,97 @@
-// =========================
-// CURRENT YEAR
-// =========================
+document.addEventListener("DOMContentLoaded", () => {
 
-const yearElement = document.getElementById("year");
+  /* =========================================
+     MOBILE MENU
+  ========================================== */
 
-if (yearElement) {
-  yearElement.textContent = new Date().getFullYear();
-}
+  const menuToggle = document.querySelector(".menu-toggle");
+  const navLinks = document.querySelector(".nav-links");
 
+  if (menuToggle && navLinks) {
 
-// =========================
-// SMOOTH SCROLL
-// =========================
+    menuToggle.addEventListener("click", () => {
 
-document.querySelectorAll('a[href^="#"]').forEach((link) => {
+      const isOpen = navLinks.classList.toggle("active");
 
-  link.addEventListener("click", (event) => {
+      menuToggle.setAttribute(
+        "aria-expanded",
+        isOpen ? "true" : "false"
+      );
 
-    const targetId = link.getAttribute("href");
-
-    if (targetId === "#") {
-      return;
-    }
-
-    const target = document.querySelector(targetId);
-
-    if (!target) {
-      return;
-    }
-
-    event.preventDefault();
-
-    target.scrollIntoView({
-      behavior: "smooth",
-      block: "start"
     });
+
+
+    navLinks.querySelectorAll("a").forEach((link) => {
+
+      link.addEventListener("click", () => {
+
+        navLinks.classList.remove("active");
+
+        menuToggle.setAttribute(
+          "aria-expanded",
+          "false"
+        );
+
+      });
+
+    });
+
+  }
+
+
+  /* =========================================
+     FOOTER YEAR
+  ========================================== */
+
+  const year = document.getElementById("year");
+
+  if (year) {
+    year.textContent = new Date().getFullYear();
+  }
+
+
+  /* =========================================
+     SMOOTH REVEAL
+  ========================================== */
+
+  const revealElements = document.querySelectorAll(
+    ".section-label, .section-heading, .about-content, .ventures-header, .product-card, .building-item, .vision-content, .contact-grid"
+  );
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+
+      entries.forEach((entry) => {
+
+        if (entry.isIntersecting) {
+
+          entry.target.style.opacity = "1";
+          entry.target.style.transform = "translateY(0)";
+
+          observer.unobserve(entry.target);
+
+        }
+
+      });
+
+    },
+    {
+      threshold: 0.12
+    }
+  );
+
+
+  revealElements.forEach((element) => {
+
+    element.style.opacity = "0";
+
+    element.style.transform = "translateY(25px)";
+
+    element.style.transition =
+      "opacity 0.7s ease, transform 0.7s ease";
+
+    observer.observe(element);
 
   });
 
-});
-
-
-// =========================
-// SCROLL REVEAL
-// =========================
-
-const revealElements = document.querySelectorAll(
-  ".section, .venture-card, .contact-content"
-);
-
-
-revealElements.forEach((element) => {
-
-  element.style.opacity = "0";
-
-  element.style.transform = "translateY(30px)";
-
-  element.style.transition =
-    "opacity 0.8s ease, transform 0.8s ease";
-
-});
-
-
-const observer = new IntersectionObserver(
-  (entries) => {
-
-    entries.forEach((entry) => {
-
-      if (entry.isIntersecting) {
-
-        entry.target.style.opacity = "1";
-
-        entry.target.style.transform = "translateY(0)";
-
-        observer.unobserve(entry.target);
-
-      }
-
-    });
-
-  },
-  {
-    threshold: 0.12
-  }
-);
-
-
-revealElements.forEach((element) => {
-  observer.observe(element);
 });
