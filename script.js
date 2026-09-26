@@ -1,41 +1,52 @@
 /* =========================================
-   LUQEVY WEBSITE JAVASCRIPT
+   LUQEVY PREMIUM WEBSITE
 ========================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
 
+
     /* =====================================
-       CURRENT YEAR
+       YEAR
     ====================================== */
 
-    const yearElement = document.getElementById("year");
+    const year =
+        document.getElementById("year");
 
-    if (yearElement) {
-        yearElement.textContent = new Date().getFullYear();
+    if (year) {
+        year.textContent =
+            new Date().getFullYear();
     }
 
 
     /* =====================================
-       NAVBAR SCROLL EFFECT
+       HEADER SCROLL
     ====================================== */
 
-    const navbar = document.getElementById("navbar");
+    const header =
+        document.getElementById("header");
 
-    const updateNavbar = () => {
+
+    function updateHeader() {
 
         if (window.scrollY > 30) {
-            navbar.classList.add("scrolled");
+
+            header.classList.add("scrolled");
+
         } else {
-            navbar.classList.remove("scrolled");
+
+            header.classList.remove("scrolled");
+
         }
 
-    };
+    }
 
-    updateNavbar();
+
+    updateHeader();
+
 
     window.addEventListener(
         "scroll",
-        updateNavbar,
+        updateHeader,
         { passive: true }
     );
 
@@ -44,79 +55,95 @@ document.addEventListener("DOMContentLoaded", () => {
        MOBILE MENU
     ====================================== */
 
-    const menuButton =
-        document.getElementById("menuButton");
+    const menuToggle =
+        document.getElementById("menuToggle");
 
-    const mobileMenu =
-        document.getElementById("mobileMenu");
-
-    const mobileLinks =
-        mobileMenu.querySelectorAll("a");
+    const mobileNav =
+        document.getElementById("mobileNav");
 
 
-    const openMenu = () => {
-
-        menuButton.classList.add("active");
-
-        mobileMenu.classList.add("open");
-
-        menuButton.setAttribute(
-            "aria-expanded",
-            "true"
-        );
-
-        document.body.classList.add(
-            "menu-open"
-        );
-    };
+    if (menuToggle && mobileNav) {
 
 
-    const closeMenu = () => {
-
-        menuButton.classList.remove("active");
-
-        mobileMenu.classList.remove("open");
-
-        menuButton.setAttribute(
-            "aria-expanded",
-            "false"
-        );
-
-        document.body.classList.remove(
-            "menu-open"
-        );
-    };
-
-
-    menuButton.addEventListener(
-        "click",
-        () => {
-
-            const isOpen =
-                mobileMenu.classList.contains("open");
-
-            if (isOpen) {
-                closeMenu();
-            } else {
-                openMenu();
-            }
-
-        }
-    );
-
-
-    mobileLinks.forEach(link => {
-
-        link.addEventListener(
+        menuToggle.addEventListener(
             "click",
-            closeMenu
+            () => {
+
+                const isOpen =
+                    mobileNav.classList.contains(
+                        "open"
+                    );
+
+
+                if (isOpen) {
+
+                    mobileNav.classList.remove(
+                        "open"
+                    );
+
+                    menuToggle.classList.remove(
+                        "active"
+                    );
+
+                    menuToggle.setAttribute(
+                        "aria-expanded",
+                        "false"
+                    );
+
+                } else {
+
+                    mobileNav.classList.add(
+                        "open"
+                    );
+
+                    menuToggle.classList.add(
+                        "active"
+                    );
+
+                    menuToggle.setAttribute(
+                        "aria-expanded",
+                        "true"
+                    );
+
+                }
+
+            }
         );
 
-    });
+
+        /* Close after clicking link */
+
+        mobileNav
+            .querySelectorAll("a")
+            .forEach(link => {
+
+                link.addEventListener(
+                    "click",
+                    () => {
+
+                        mobileNav.classList.remove(
+                            "open"
+                        );
+
+                        menuToggle.classList.remove(
+                            "active"
+                        );
+
+                        menuToggle.setAttribute(
+                            "aria-expanded",
+                            "false"
+                        );
+
+                    }
+                );
+
+            });
+
+    }
 
 
     /* =====================================
-       CLOSE MENU WITH ESCAPE
+       ESCAPE CLOSE
     ====================================== */
 
     document.addEventListener(
@@ -125,9 +152,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (
                 event.key === "Escape" &&
-                mobileMenu.classList.contains("open")
+                mobileNav &&
+                mobileNav.classList.contains("open")
             ) {
-                closeMenu();
+
+                mobileNav.classList.remove(
+                    "open"
+                );
+
+                menuToggle.classList.remove(
+                    "active"
+                );
+
+                menuToggle.setAttribute(
+                    "aria-expanded",
+                    "false"
+                );
+
             }
 
         }
@@ -142,7 +183,9 @@ document.addEventListener("DOMContentLoaded", () => {
         document.querySelectorAll(".reveal");
 
 
-    if ("IntersectionObserver" in window) {
+    if (
+        "IntersectionObserver" in window
+    ) {
 
         const observer =
             new IntersectionObserver(
@@ -150,7 +193,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     entries.forEach(entry => {
 
-                        if (entry.isIntersecting) {
+                        if (
+                            entry.isIntersecting
+                        ) {
 
                             entry.target.classList.add(
                                 "visible"
@@ -167,38 +212,56 @@ document.addEventListener("DOMContentLoaded", () => {
                 },
                 {
                     threshold: 0.12,
-                    rootMargin: "0px 0px -40px 0px"
+                    rootMargin:
+                        "0px 0px -50px 0px"
                 }
             );
 
 
-        revealElements.forEach(element => {
-            observer.observe(element);
-        });
+        revealElements.forEach(
+            element => {
+
+                observer.observe(element);
+
+            }
+        );
+
 
     } else {
 
-        revealElements.forEach(element => {
-            element.classList.add("visible");
-        });
+        revealElements.forEach(
+            element => {
+
+                element.classList.add(
+                    "visible"
+                );
+
+            }
+        );
 
     }
 
 
     /* =====================================
-       SMOOTH ANCHOR HANDLING
+       SMOOTH SCROLL
     ====================================== */
 
     document
-        .querySelectorAll('a[href^="#"]')
+        .querySelectorAll(
+            'a[href^="#"]'
+        )
         .forEach(anchor => {
+
 
             anchor.addEventListener(
                 "click",
                 event => {
 
                     const targetId =
-                        anchor.getAttribute("href");
+                        anchor.getAttribute(
+                            "href"
+                        );
+
 
                     if (
                         !targetId ||
@@ -207,29 +270,42 @@ document.addEventListener("DOMContentLoaded", () => {
                         return;
                     }
 
+
                     const target =
                         document.querySelector(
                             targetId
                         );
 
+
                     if (!target) {
                         return;
                     }
 
+
                     event.preventDefault();
 
-                    const navbarHeight =
-                        navbar.offsetHeight;
+
+                    const headerHeight =
+                        header
+                            ? header.offsetHeight
+                            : 0;
+
 
                     const targetPosition =
-                        target.getBoundingClientRect().top +
+                        target.getBoundingClientRect()
+                            .top +
                         window.scrollY -
-                        navbarHeight -
-                        15;
+                        headerHeight;
+
 
                     window.scrollTo({
-                        top: targetPosition,
-                        behavior: "smooth"
+
+                        top:
+                            targetPosition,
+
+                        behavior:
+                            "smooth"
+
                     });
 
                 }
@@ -239,68 +315,71 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================
-       PRODUCT VISUAL SUBTLE MOVEMENT
+       HOVER MOVEMENT FOR VENTURE
     ====================================== */
 
-    const productVisual =
-        document.querySelector(".product-visual");
+    const venture =
+        document.querySelector(".venture");
 
-    const orbitLarge =
-        document.querySelector(".orbit-large");
-
-    const orbitSmall =
-        document.querySelector(".orbit-small");
+    const ventureMark =
+        document.querySelector(".venture-mark");
 
 
     if (
-        productVisual &&
-        orbitLarge &&
-        orbitSmall
+        venture &&
+        ventureMark &&
+        window.matchMedia(
+            "(pointer: fine)"
+        ).matches
     ) {
 
-        let ticking = false;
+        venture.addEventListener(
+            "mousemove",
+            event => {
+
+                const rect =
+                    venture.getBoundingClientRect();
 
 
-        window.addEventListener(
-            "scroll",
+                const x =
+                    (
+                        event.clientX -
+                        rect.left
+                    ) /
+                    rect.width;
+
+
+                const y =
+                    (
+                        event.clientY -
+                        rect.top
+                    ) /
+                    rect.height;
+
+
+                const moveX =
+                    (x - 0.5) * 8;
+
+
+                const moveY =
+                    (y - 0.5) * 8;
+
+
+                ventureMark.style.transform =
+                    `translate(${moveX}px, ${moveY}px)`;
+
+            }
+        );
+
+
+        venture.addEventListener(
+            "mouseleave",
             () => {
 
-                if (!ticking) {
+                ventureMark.style.transform =
+                    "translate(0, 0)";
 
-                    window.requestAnimationFrame(() => {
-
-                        const rect =
-                            productVisual.getBoundingClientRect();
-
-                        const viewportCenter =
-                            window.innerHeight / 2;
-
-                        const distance =
-                            rect.top +
-                            rect.height / 2 -
-                            viewportCenter;
-
-                        const movement =
-                            Math.max(
-                                -15,
-                                Math.min(15, distance / 25)
-                            );
-
-                        orbitLarge.style.transform =
-                            `translateY(${movement}px)`;
-
-                        orbitSmall.style.transform =
-                            `translateY(${-movement}px)`;
-
-                        ticking = false;
-
-                    });
-
-                    ticking = true;
-                }
-
-            },
-            { passive: true }
+            }
         );
 
     }
@@ -325,17 +404,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================
-       CONSOLE BRAND MESSAGE
+       CONSOLE
     ====================================== */
 
     console.log(
-        "%cLUQEVY",
-        "font-size:28px;font-weight:bold;"
-    );
-
-    console.log(
-        "%cBuilding what's next.",
-        "font-size:14px;color:#6abaff;"
+        "LUQEVY — Building what's next."
     );
 
 });
