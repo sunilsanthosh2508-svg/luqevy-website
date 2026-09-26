@@ -1,21 +1,16 @@
 :root {
-  --bg: #02040d;
-  --bg-soft: #070a16;
-  --card: #0a0e1c;
-
-  --white: #f7f9ff;
-  --text: #dce3f5;
-  --muted: #7f899f;
-
+  --bg: #03050d;
+  --bg2: #070b18;
+  --white: #f4f7ff;
+  --text: #d9e0ef;
+  --muted: #7d879c;
   --line: rgba(255, 255, 255, 0.09);
 
-  --blue: #238cff;
-  --cyan: #21d4fd;
-  --violet: #754cff;
+  --blue: #2588ff;
+  --violet: #704cff;
 
-  --max-width: 1240px;
+  --max: 1240px;
 }
-
 
 * {
   margin: 0;
@@ -23,33 +18,20 @@
   box-sizing: border-box;
 }
 
-
 html {
   scroll-behavior: smooth;
 }
 
-
 body {
   background: var(--bg);
   color: var(--text);
-
   font-family: "DM Sans", sans-serif;
-
-  line-height: 1.5;
-
   overflow-x: hidden;
 }
-
 
 a {
   color: inherit;
   text-decoration: none;
-}
-
-
-::selection {
-  background: #4263ff;
-  color: white;
 }
 
 
@@ -58,64 +40,64 @@ a {
 ========================= */
 
 .navbar {
-  width: min(var(--max-width), calc(100% - 48px));
-
-  height: 90px;
+  width: min(var(--max), calc(100% - 64px));
+  height: 82px;
 
   margin: auto;
 
   display: flex;
-
   align-items: center;
-
   justify-content: space-between;
 
   border-bottom: 1px solid var(--line);
 
   position: relative;
-
-  z-index: 20;
+  z-index: 10;
 }
 
+
+/* IMPORTANT:
+   Your logo image contains a lot of empty space.
+   This crops the image without changing the actual logo.
+*/
 
 .brand {
-  width: 105px;
-  height: 58px;
+  width: 92px;
+  height: 42px;
 
-  display: flex;
+  overflow: hidden;
 
-  align-items: center;
+  display: block;
 }
 
-
 .brand img {
-  width: 100%;
-  height: 100%;
+  width: 92px;
+  height: 92px;
+
+  max-width: none;
 
   object-fit: contain;
 
   display: block;
+
+  transform: translateY(-25px);
 }
 
 
 .navbar nav {
   display: flex;
-
-  gap: 38px;
+  gap: 42px;
 }
-
 
 .navbar nav a {
-  font-size: 13px;
+  font-size: 14px;
+  color: #8d97ab;
 
-  color: #8c96aa;
-
-  transition: 0.25s ease;
+  transition: color 0.25s ease;
 }
 
-
 .navbar nav a:hover {
-  color: white;
+  color: #ffffff;
 }
 
 
@@ -124,81 +106,97 @@ a {
 ========================= */
 
 .hero {
-  width: min(var(--max-width), calc(100% - 48px));
+  width: min(var(--max), calc(100% - 64px));
 
-  min-height: 850px;
+  min-height: 720px;
 
   margin: auto;
 
   position: relative;
 
-  padding-top: 42px;
+  padding-top: 35px;
 
   overflow: hidden;
 }
 
 
+/* top metadata */
+
 .hero-meta {
   display: flex;
-
   justify-content: space-between;
 
-  color: #596277;
+  color: #536078;
 
   font-size: 10px;
 
-  letter-spacing: 0.18em;
+  letter-spacing: 0.22em;
 }
 
+
+/* hero content */
 
 .hero-content {
   position: relative;
+  z-index: 3;
 
-  z-index: 5;
-
-  padding-top: 80px;
+  padding-top: 95px;
 }
 
+
+/* actual logo */
 
 .hero-logo {
   width: 250px;
+  height: 115px;
 
-  margin-bottom: 25px;
+  overflow: hidden;
+
+  margin-bottom: 32px;
 }
-
 
 .hero-logo img {
-  width: 100%;
+  width: 250px;
+  height: 250px;
+
+  max-width: none;
+
+  object-fit: contain;
 
   display: block;
+
+  transform: translateY(-62px);
 }
 
 
+/* small label */
+
 .eyebrow {
-  color: #8c96aa;
+  color: #71809c;
 
   font-size: 11px;
 
-  letter-spacing: 0.25em;
+  letter-spacing: 0.24em;
 
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
 
 
+/* main heading */
+
 .hero h1 {
-  max-width: 900px;
+  max-width: 950px;
 
   font-family: "Space Grotesk", sans-serif;
 
-  font-size: clamp(65px, 9vw, 130px);
+  font-size: clamp(64px, 8vw, 118px);
 
-  line-height: 0.9;
+  line-height: 0.91;
 
-  letter-spacing: -0.075em;
+  letter-spacing: -0.07em;
 
   font-weight: 500;
 }
-
 
 .hero h1 span {
   display: block;
@@ -206,9 +204,10 @@ a {
   background:
     linear-gradient(
       90deg,
-      #ffffff,
-      #4c91ff,
-      #8a5cff
+      #ffffff 0%,
+      #dfe8ff 35%,
+      #6a91ff 70%,
+      #875cff 100%
     );
 
   -webkit-background-clip: text;
@@ -218,18 +217,22 @@ a {
 }
 
 
-.hero-text {
-  max-width: 510px;
+/* description */
 
-  margin-top: 42px;
+.hero-text {
+  max-width: 500px;
+
+  margin-top: 32px;
 
   color: var(--muted);
 
-  font-size: 17px;
+  font-size: 16px;
 
-  line-height: 1.8;
+  line-height: 1.75;
 }
 
+
+/* button */
 
 .primary-button {
   display: inline-flex;
@@ -238,11 +241,11 @@ a {
 
   gap: 28px;
 
-  margin-top: 35px;
+  margin-top: 30px;
 
-  padding: 15px 20px;
+  padding: 14px 19px;
 
-  background: white;
+  background: #ffffff;
 
   color: #050711;
 
@@ -250,49 +253,44 @@ a {
 
   font-weight: 700;
 
-  transition: 0.3s ease;
+  transition: 0.25s ease;
 }
-
 
 .primary-button:hover {
   transform: translateY(-3px);
 
-  background: #dfe8ff;
+  background: #dfe7ff;
 }
 
 
-/* HERO GLOW */
+/* =========================
+   HERO LIGHT
+========================= */
 
-.hero-orb {
+.hero::after {
+  content: "";
+
   position: absolute;
+
+  width: 550px;
+  height: 550px;
+
+  right: -80px;
+  top: 150px;
 
   border-radius: 50%;
 
-  filter: blur(90px);
+  background:
+    radial-gradient(
+      circle,
+      rgba(55, 104, 255, 0.18),
+      rgba(55, 104, 255, 0.07) 40%,
+      transparent 72%
+    );
+
+  filter: blur(10px);
 
   pointer-events: none;
-}
-
-
-.orb-one {
-  width: 480px;
-  height: 480px;
-
-  right: -100px;
-  top: 200px;
-
-  background: rgba(35, 140, 255, 0.17);
-}
-
-
-.orb-two {
-  width: 360px;
-  height: 360px;
-
-  right: 180px;
-  bottom: 20px;
-
-  background: rgba(117, 76, 255, 0.13);
 }
 
 
@@ -301,36 +299,33 @@ a {
 ========================= */
 
 .section {
-  width: min(var(--max-width), calc(100% - 48px));
+  width: min(var(--max), calc(100% - 64px));
 
   margin: auto;
 
-  padding: 130px 0;
+  padding: 120px 0;
 
   border-top: 1px solid var(--line);
 
   display: grid;
 
-  grid-template-columns: 100px 1fr;
+  grid-template-columns: 90px 1fr;
 }
-
 
 .section-index {
-  color: #4f596d;
+  color: #4f5a70;
 
-  font-size: 12px;
+  font-size: 11px;
 
-  letter-spacing: 0.15em;
+  letter-spacing: 0.18em;
 }
-
 
 .section-content {
-  max-width: 1000px;
+  max-width: 1050px;
 }
 
-
 .section-label {
-  color: #667187;
+  color: #64718a;
 
   font-size: 10px;
 
@@ -338,14 +333,16 @@ a {
 
   letter-spacing: 0.2em;
 
-  margin-bottom: 28px;
+  margin-bottom: 25px;
 }
 
+
+/* headings */
 
 .section h2 {
   font-family: "Space Grotesk", sans-serif;
 
-  font-size: clamp(45px, 6vw, 82px);
+  font-size: clamp(46px, 6vw, 80px);
 
   line-height: 0.98;
 
@@ -354,9 +351,8 @@ a {
   font-weight: 500;
 }
 
-
 .section h2 span {
-  color: #6e778b;
+  color: #68738a;
 }
 
 
@@ -365,22 +361,21 @@ a {
 ========================= */
 
 .about-copy {
-  max-width: 650px;
+  max-width: 610px;
 
   margin-left: auto;
 
-  margin-top: 50px;
+  margin-top: 48px;
 }
-
 
 .about-copy p {
   color: var(--muted);
 
-  font-size: 17px;
+  font-size: 16px;
 
   line-height: 1.8;
 
-  margin-bottom: 25px;
+  margin-bottom: 22px;
 }
 
 
@@ -388,36 +383,30 @@ a {
    VENTURES
 ========================= */
 
-.ventures .section-content {
-  width: 100%;
-}
-
-
 .ventures h2 {
-  margin-bottom: 70px;
+  margin-bottom: 60px;
 }
 
 
 .venture-card {
-  border: 1px solid var(--line);
-
   background:
     linear-gradient(
       145deg,
-      rgba(255,255,255,0.04),
-      rgba(255,255,255,0.015)
+      rgba(255, 255, 255, 0.045),
+      rgba(255, 255, 255, 0.012)
     );
+
+  border: 1px solid var(--line);
 
   padding: 30px;
 
-  transition: 0.35s ease;
+  transition: 0.3s ease;
 }
 
-
 .venture-card:hover {
-  border-color: rgba(74, 137, 255, 0.35);
+  border-color: rgba(72, 124, 255, 0.3);
 
-  transform: translateY(-5px);
+  transform: translateY(-4px);
 }
 
 
@@ -426,11 +415,11 @@ a {
 
   justify-content: space-between;
 
-  padding-bottom: 25px;
+  padding-bottom: 22px;
 
   border-bottom: 1px solid var(--line);
 
-  color: #687287;
+  color: #657087;
 
   font-size: 10px;
 
@@ -439,7 +428,7 @@ a {
 
 
 .venture-body {
-  min-height: 390px;
+  min-height: 350px;
 
   display: flex;
 
@@ -452,38 +441,38 @@ a {
 
 
 .venture-info {
-  max-width: 600px;
+  max-width: 620px;
 }
 
 
 .venture-kicker {
-  color: #6d7890;
+  color: #6e7b94;
 
   font-size: 10px;
 
   letter-spacing: 0.18em;
 
-  margin-bottom: 15px;
+  margin-bottom: 14px;
 }
 
 
 .venture-info h3 {
   font-family: "Space Grotesk", sans-serif;
 
-  font-size: clamp(55px, 7vw, 100px);
-
-  letter-spacing: -0.07em;
+  font-size: clamp(54px, 7vw, 92px);
 
   line-height: 0.9;
 
-  margin-bottom: 30px;
+  letter-spacing: -0.07em;
+
+  margin-bottom: 25px;
 }
 
 
 .venture-info > p:not(.venture-kicker) {
   color: var(--muted);
 
-  font-size: 16px;
+  font-size: 15px;
 
   line-height: 1.75;
 }
@@ -492,15 +481,15 @@ a {
 .text-button {
   display: inline-flex;
 
-  gap: 20px;
+  gap: 18px;
 
-  margin-top: 30px;
+  margin-top: 28px;
 
-  padding-bottom: 6px;
+  padding-bottom: 5px;
 
-  border-bottom: 1px solid #7c8aff;
+  border-bottom: 1px solid #667cff;
 
-  color: #dfe5ff;
+  color: #dce4ff;
 
   font-size: 13px;
 
@@ -508,60 +497,56 @@ a {
 }
 
 
-/* VENTURE VISUAL */
+/* venture circle */
 
 .venture-visual {
-  width: 220px;
-  height: 220px;
+  width: 190px;
+  height: 190px;
 
   flex-shrink: 0;
-
-  position: relative;
 
   border-radius: 50%;
 
   display: flex;
 
   align-items: center;
-
   justify-content: center;
-
-  overflow: hidden;
 
   background:
     linear-gradient(
       135deg,
-      #168dff,
-      #365eff 48%,
-      #804cff
+      #1c9bff,
+      #405cff 50%,
+      #814cff
     );
-}
 
+  position: relative;
+
+  overflow: hidden;
+}
 
 .venture-visual span {
   position: relative;
-
   z-index: 2;
 
   font-family: "Space Grotesk", sans-serif;
 
-  font-size: 48px;
+  font-size: 42px;
 
   font-weight: 600;
 
   color: white;
 }
 
-
 .visual-glow {
   position: absolute;
 
-  width: 130px;
-  height: 130px;
+  width: 100px;
+  height: 100px;
 
   border-radius: 50%;
 
-  background: rgba(255,255,255,0.22);
+  background: rgba(255, 255, 255, 0.2);
 
   filter: blur(20px);
 }
@@ -572,15 +557,15 @@ a {
 ========================= */
 
 .vision-text {
-  max-width: 600px;
-
-  margin-top: 45px;
+  max-width: 580px;
 
   margin-left: auto;
 
+  margin-top: 40px;
+
   color: var(--muted);
 
-  font-size: 18px;
+  font-size: 17px;
 
   line-height: 1.8;
 }
@@ -591,16 +576,16 @@ a {
 ========================= */
 
 .contact {
-  background: #03050e;
+  background: #02040b;
 
   border-top: 1px solid var(--line);
 
-  padding: 150px 24px;
+  padding: 135px 32px;
 }
 
 
 .contact-content {
-  width: min(1000px, 100%);
+  width: min(1050px, 100%);
 
   margin: auto;
 }
@@ -609,7 +594,7 @@ a {
 .contact h2 {
   font-family: "Space Grotesk", sans-serif;
 
-  font-size: clamp(60px, 9vw, 125px);
+  font-size: clamp(58px, 8vw, 115px);
 
   line-height: 0.9;
 
@@ -618,24 +603,23 @@ a {
   font-weight: 500;
 }
 
-
 .contact h2 span {
   display: block;
 
-  color: #6d7689;
+  color: #68738a;
 }
 
 
 .contact-button {
   display: inline-flex;
 
-  gap: 30px;
-
   align-items: center;
 
-  margin-top: 45px;
+  gap: 28px;
 
-  padding: 16px 22px;
+  margin-top: 40px;
+
+  padding: 15px 20px;
 
   background: white;
 
@@ -645,14 +629,13 @@ a {
 
   font-weight: 700;
 
-  transition: 0.3s ease;
+  transition: 0.25s ease;
 }
-
 
 .contact-button:hover {
   transform: translateY(-3px);
 
-  background: #dce6ff;
+  background: #dce5ff;
 }
 
 
@@ -661,13 +644,9 @@ a {
 ========================= */
 
 footer {
-  width: 100%;
-
-  padding: 35px 24px;
+  padding: 30px 32px;
 
   border-top: 1px solid var(--line);
-
-  background: #02040b;
 
   display: grid;
 
@@ -675,31 +654,32 @@ footer {
 
   align-items: center;
 
-  color: #606a7e;
+  color: #626c80;
 
   font-size: 12px;
 }
 
 
 .footer-brand {
-  width: 90px;
+  width: 85px;
+  height: 40px;
 
-  height: 45px;
+  overflow: hidden;
 }
 
-
 .footer-brand img {
-  width: 100%;
-  height: 100%;
+  width: 85px;
+  height: 85px;
 
   object-fit: contain;
+
+  transform: translateY(-23px);
 }
 
 
 footer p {
   text-align: center;
 }
-
 
 footer > span {
   text-align: right;
@@ -715,46 +695,46 @@ footer > span {
   .navbar {
     width: calc(100% - 32px);
 
-    height: 75px;
+    height: 72px;
   }
-
-
-  .brand {
-    width: 90px;
-  }
-
 
   .navbar nav {
     display: none;
   }
 
-
   .hero {
     width: calc(100% - 32px);
 
-    min-height: 750px;
-  }
+    min-height: 720px;
 
+    padding-top: 28px;
+  }
 
   .hero-content {
     padding-top: 70px;
   }
 
-
   .hero-logo {
     width: 190px;
+    height: 90px;
+
+    margin-bottom: 25px;
   }
 
+  .hero-logo img {
+    width: 190px;
+    height: 190px;
+
+    transform: translateY(-48px);
+  }
 
   .hero h1 {
-    font-size: clamp(58px, 16vw, 90px);
+    font-size: clamp(58px, 15vw, 86px);
   }
-
 
   .hero-text {
     font-size: 15px;
   }
-
 
   .section {
     width: calc(100% - 32px);
@@ -764,69 +744,57 @@ footer > span {
     padding: 90px 0;
   }
 
-
   .section-index {
-    margin-bottom: 45px;
+    margin-bottom: 40px;
   }
-
 
   .section h2 {
     font-size: 48px;
   }
 
-
   .about-copy {
     margin-left: 0;
   }
-
 
   .venture-body {
     flex-direction: column;
 
     align-items: flex-start;
 
-    padding: 45px 0;
+    padding: 40px 0;
   }
-
 
   .venture-visual {
-    width: 140px;
-    height: 140px;
+    width: 135px;
+    height: 135px;
   }
-
 
   .venture-visual span {
     font-size: 30px;
   }
 
-
   .venture-info h3 {
     font-size: 62px;
   }
-
 
   .contact {
     padding: 100px 20px;
   }
 
-
   .contact h2 {
-    font-size: 65px;
+    font-size: 64px;
   }
-
 
   footer {
     grid-template-columns: 1fr;
 
-    gap: 20px;
+    gap: 18px;
 
     text-align: center;
   }
-
 
   footer p,
   footer > span {
     text-align: center;
   }
-
 }
