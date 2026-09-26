@@ -1,400 +1,187 @@
-/* =========================================
-   LUQEVY
-   Premium Technology Website
-========================================= */
+/* =========================================================
+   LUQEVY — INTERACTIONS
+   ========================================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
 
+    /* ---------------------------------------------
+       Current year
+    --------------------------------------------- */
 
-    /* =====================================
-       CURRENT YEAR
-    ====================================== */
-
-    const year =
-        document.getElementById("year");
+    const year = document.getElementById("year");
 
     if (year) {
-        year.textContent =
-            new Date().getFullYear();
+        year.textContent = new Date().getFullYear();
     }
 
 
-    /* =====================================
-       HEADER
-    ====================================== */
+    /* ---------------------------------------------
+       Header scroll state
+    --------------------------------------------- */
 
-    const header =
-        document.getElementById("header");
-
+    const header = document.getElementById("siteHeader");
 
     function updateHeader() {
-
-        if (!header) return;
-
         if (window.scrollY > 30) {
-
             header.classList.add("scrolled");
-
         } else {
-
             header.classList.remove("scrolled");
-
         }
-
     }
-
 
     updateHeader();
 
-
-    window.addEventListener(
-        "scroll",
-        updateHeader,
-        { passive: true }
-    );
+    window.addEventListener("scroll", updateHeader, {
+        passive: true
+    });
 
 
-    /* =====================================
-       MOBILE MENU
-    ====================================== */
+    /* ---------------------------------------------
+       Mobile navigation
+    --------------------------------------------- */
 
-    const menuToggle =
-        document.getElementById("menuToggle");
+    const menuButton = document.getElementById("menuButton");
+    const mobileMenu = document.getElementById("mobileMenu");
 
-    const mobileNav =
-        document.getElementById("mobileNav");
+    if (menuButton && mobileMenu) {
 
+        menuButton.addEventListener("click", () => {
+            mobileMenu.classList.toggle("open");
+        });
 
-    if (menuToggle && mobileNav) {
+        const mobileLinks = mobileMenu.querySelectorAll("a");
 
-        menuToggle.addEventListener(
-            "click",
-            () => {
+        mobileLinks.forEach(link => {
+            link.addEventListener("click", () => {
+                mobileMenu.classList.remove("open");
+            });
+        });
 
-                const open =
-                    mobileNav.classList.contains(
-                        "open"
-                    );
+        document.addEventListener("keydown", event => {
 
-
-                if (open) {
-
-                    mobileNav.classList.remove(
-                        "open"
-                    );
-
-                    menuToggle.classList.remove(
-                        "active"
-                    );
-
-                    menuToggle.setAttribute(
-                        "aria-expanded",
-                        "false"
-                    );
-
-                } else {
-
-                    mobileNav.classList.add(
-                        "open"
-                    );
-
-                    menuToggle.classList.add(
-                        "active"
-                    );
-
-                    menuToggle.setAttribute(
-                        "aria-expanded",
-                        "true"
-                    );
-
-                }
-
+            if (event.key === "Escape") {
+                mobileMenu.classList.remove("open");
             }
-        );
+
+        });
+    }
 
 
-        mobileNav
-            .querySelectorAll("a")
-            .forEach(link => {
+    /* ---------------------------------------------
+       Scroll reveal
+    --------------------------------------------- */
 
-                link.addEventListener(
-                    "click",
-                    () => {
+    const revealElements = document.querySelectorAll(".reveal");
 
-                        mobileNav.classList.remove(
-                            "open"
-                        );
+    const revealObserver = new IntersectionObserver(
+        entries => {
 
-                        menuToggle.classList.remove(
-                            "active"
-                        );
+            entries.forEach(entry => {
 
-                        menuToggle.setAttribute(
-                            "aria-expanded",
-                            "false"
-                        );
+                if (entry.isIntersecting) {
 
-                    }
-                );
+                    entry.target.classList.add("visible");
+
+                    revealObserver.unobserve(entry.target);
+                }
 
             });
 
-    }
-
-
-    /* =====================================
-       ESCAPE KEY
-    ====================================== */
-
-    document.addEventListener(
-        "keydown",
-        event => {
-
-            if (
-                event.key === "Escape" &&
-                mobileNav &&
-                mobileNav.classList.contains("open")
-            ) {
-
-                mobileNav.classList.remove(
-                    "open"
-                );
-
-                menuToggle.classList.remove(
-                    "active"
-                );
-
-                menuToggle.setAttribute(
-                    "aria-expanded",
-                    "false"
-                );
-
-            }
-
+        },
+        {
+            threshold: 0.12,
+            rootMargin: "0px 0px -50px 0px"
         }
     );
 
-
-    /* =====================================
-       REVEAL ANIMATION
-    ====================================== */
-
-    const revealElements =
-        document.querySelectorAll(".reveal");
+    revealElements.forEach(element => {
+        revealObserver.observe(element);
+    });
 
 
-    if (
-        "IntersectionObserver" in window
-    ) {
+    /* ---------------------------------------------
+       Smooth internal navigation
+    --------------------------------------------- */
 
-        const observer =
-            new IntersectionObserver(
-                entries => {
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
 
-                    entries.forEach(entry => {
+        link.addEventListener("click", event => {
 
-                        if (
-                            entry.isIntersecting
-                        ) {
+            const targetId = link.getAttribute("href");
 
-                            entry.target.classList.add(
-                                "visible"
-                            );
-
-                            observer.unobserve(
-                                entry.target
-                            );
-
-                        }
-
-                    });
-
-                },
-                {
-                    threshold: 0.12,
-
-                    rootMargin:
-                        "0px 0px -50px 0px"
-                }
-            );
-
-
-        revealElements.forEach(
-            element => {
-
-                observer.observe(element);
-
+            if (!targetId || targetId === "#") {
+                return;
             }
-        );
 
-    } else {
+            const target = document.querySelector(targetId);
 
-        revealElements.forEach(
-            element => {
-
-                element.classList.add(
-                    "visible"
-                );
-
+            if (!target) {
+                return;
             }
-        );
 
-    }
+            event.preventDefault();
 
+            const headerHeight = header
+                ? header.offsetHeight
+                : 0;
 
-    /* =====================================
-       SMOOTH INTERNAL LINKS
-    ====================================== */
+            const targetPosition =
+                target.getBoundingClientRect().top +
+                window.scrollY -
+                headerHeight;
 
-    document
-        .querySelectorAll(
-            'a[href^="#"]'
-        )
-        .forEach(anchor => {
-
-            anchor.addEventListener(
-                "click",
-                event => {
-
-                    const targetId =
-                        anchor.getAttribute(
-                            "href"
-                        );
-
-
-                    if (
-                        !targetId ||
-                        targetId === "#"
-                    ) {
-                        return;
-                    }
-
-
-                    const target =
-                        document.querySelector(
-                            targetId
-                        );
-
-
-                    if (!target) {
-                        return;
-                    }
-
-
-                    event.preventDefault();
-
-
-                    const headerHeight =
-                        header
-                            ? header.offsetHeight
-                            : 0;
-
-
-                    const position =
-                        target
-                            .getBoundingClientRect()
-                            .top +
-                        window.scrollY -
-                        headerHeight;
-
-
-                    window.scrollTo({
-
-                        top: position,
-
-                        behavior: "smooth"
-
-                    });
-
-                }
-            );
+            window.scrollTo({
+                top: targetPosition,
+                behavior: "smooth"
+            });
 
         });
 
-
-    /* =====================================
-       CAMPUS PILOT VISUAL
-    ====================================== */
-
-    const ventureVisual =
-        document.querySelector(
-            ".venture-visual"
-        );
-
-    const visualLogo =
-        document.querySelector(
-            ".visual-logo"
-        );
+    });
 
 
-    if (
-        ventureVisual &&
-        visualLogo &&
-        window.matchMedia(
-            "(pointer: fine)"
-        ).matches
-    ) {
+    /* ---------------------------------------------
+       Product visual movement
+    --------------------------------------------- */
 
-        ventureVisual.addEventListener(
-            "mousemove",
-            event => {
+    const productArt = document.querySelector(".product-art");
+    const productOrb = document.querySelector(".product-orb");
 
-                const rect =
-                    ventureVisual.getBoundingClientRect();
+    if (productArt && productOrb) {
 
+        productArt.addEventListener("mousemove", event => {
 
-                const x =
-                    (
-                        event.clientX -
-                        rect.left
-                    ) /
-                    rect.width;
+            const rect = productArt.getBoundingClientRect();
 
+            const x =
+                (event.clientX - rect.left) /
+                rect.width -
+                0.5;
 
-                const y =
-                    (
-                        event.clientY -
-                        rect.top
-                    ) /
-                    rect.height;
+            const y =
+                (event.clientY - rect.top) /
+                rect.height -
+                0.5;
 
+            productOrb.style.transform =
+                `translate(calc(-50% + ${x * 14}px), calc(-50% + ${y * 14}px))`;
+        });
 
-                const moveX =
-                    (x - 0.5) * 12;
+        productArt.addEventListener("mouseleave", () => {
 
+            productOrb.style.transform =
+                "translate(-50%, -50%)";
 
-                const moveY =
-                    (y - 0.5) * 12;
-
-
-                visualLogo.style.transform =
-                    `translate(${moveX}px, ${moveY}px)`;
-
-            }
-        );
-
-
-        ventureVisual.addEventListener(
-            "mouseleave",
-            () => {
-
-                visualLogo.style.transform =
-                    "translate(0, 0)";
-
-            }
-        );
-
+        });
     }
 
 
-    /* =====================================
-       EXTERNAL LINK SECURITY
-    ====================================== */
+    /* ---------------------------------------------
+       External links
+    --------------------------------------------- */
 
     document
-        .querySelectorAll(
-            'a[target="_blank"]'
-        )
+        .querySelectorAll('a[target="_blank"]')
         .forEach(link => {
 
             link.setAttribute(
@@ -405,12 +192,52 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
 
-    /* =====================================
-       CONSOLE
-    ====================================== */
+    /* ---------------------------------------------
+       Small parallax effect on hero visual
+    --------------------------------------------- */
+
+    const heroVisual = document.querySelector(".hero-visual");
+
+    if (heroVisual && window.matchMedia("(pointer:fine)").matches) {
+
+        heroVisual.addEventListener("mousemove", event => {
+
+            const rect = heroVisual.getBoundingClientRect();
+
+            const x =
+                (event.clientX - rect.left) /
+                rect.width -
+                0.5;
+
+            const y =
+                (event.clientY - rect.top) /
+                rect.height -
+                0.5;
+
+            heroVisual.style.transform =
+                `translate(${x * 7}px, ${y * 7}px)`;
+        });
+
+        heroVisual.addEventListener("mouseleave", () => {
+
+            heroVisual.style.transform =
+                "translate(0, 0)";
+
+        });
+    }
+
+
+    /* ---------------------------------------------
+       Console branding
+    --------------------------------------------- */
 
     console.log(
-        "LUQEVY — Building what's next."
+        "%cLuqevy",
+        "font-size:24px;font-weight:700;color:#61a4ff;"
+    );
+
+    console.log(
+        "Technology for what comes next."
     );
 
 });
